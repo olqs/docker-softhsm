@@ -15,9 +15,9 @@ nameOverride: ""
 fullnameOverride: ""
 
 softhsm:
-  pin: 1234
-  sopin: 0000
-  port: 5657
+  pin: "1234"
+  sopin: "0000"
+  port: "5657"
 
 serviceAccount:
   # Specifies whether a service account should be created

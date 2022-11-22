@@ -1,11 +1,13 @@
 #!/bin/bash -x
 
+env | sort
+
 pin=${SOFTHSM_PIN:-1234}
 sopin=${SOFTHSM_SOPIN:-0000}
 keyid=${SOFTHSM_KEYID:-BEEF}
 PKCS11_DAEMON_SOCKET="tcp://0.0.0.0:${SOFTHSM_PORT:-5657}"
 
-
+env | sort
 
 if ! [[ -f /var/lib/softhsm/key.pem ]]
 then
