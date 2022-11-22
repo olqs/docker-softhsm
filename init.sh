@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 
 pin=${SOFTHSM_PIN:-1234}
 sopin=${SOFTHSM_SOPIN:-0000}
