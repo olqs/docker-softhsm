@@ -8,8 +8,8 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: {{ .Values.softhsm.port }}
       protocol: TCP
-      name: http
+      name: softhsm
   selector:
     {{- include "softhsm.selectorLabels" . | nindent 4 }}
