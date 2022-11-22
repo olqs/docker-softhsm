@@ -38,13 +38,13 @@ spec:
               containerPort: {{ .Values.softhsm.port | default 5657 }}
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /
+            tcpSocket:
               port: softhsm
+              initialDelaySeconds: 5
           readinessProbe:
-            httpGet:
-              path: /
+            tcpSocket:
               port: softhsm
+              initialDelaySeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
