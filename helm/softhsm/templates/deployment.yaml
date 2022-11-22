@@ -40,11 +40,11 @@ spec:
           livenessProbe:
             tcpSocket:
               port: softhsm
-              initialDelaySeconds: 10
+              initialDelaySeconds: 5
           readinessProbe:
             tcpSocket:
               port: softhsm
-              initialDelaySeconds: 15
+              initialDelaySeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
