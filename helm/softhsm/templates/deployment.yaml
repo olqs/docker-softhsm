@@ -37,6 +37,20 @@ spec:
             - name: softhsm
               containerPort: {{ .Values.softhsm.port | default 5657 }}
               protocol: TCP
+          volumeMounts:
+            - name: {{ .Values.persitence.name }}
+              mountPath: {{ .Values.persistence.path }}
+              {{- if .Values.persistence.subPath }}
+              subPath: {{ .Values.persistence.subPath }}
+              {{- end }}
+          volumes:
+            - name: {{ .Values.persistence.name }}
+              {{- if .Values.persistence.enable }}
+              persistentVolumeClaim:
+                claimName: {{ default (include "softhsm.fullname" .) .Values.persistence.existingClaim }}
+              {{- else }}
+              emptyDir: {}
+              {{- end }}
           livenessProbe:
             tcpSocket:
               port: softhsm

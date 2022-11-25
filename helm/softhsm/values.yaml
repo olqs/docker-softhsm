@@ -85,3 +85,14 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+persistence:
+  enabled: false
+  name: softhsm-pvc
+#  existingClaim: ""
+  accessMode: ReadWriteOnce
+  size: 128Mi
+  # storageClass: ""
+  path: /var/lib/softhsm
+  annotations: {}
+  # subPath: "" # only mount a subpath of the Volume into the pod
