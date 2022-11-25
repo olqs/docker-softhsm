@@ -43,14 +43,6 @@ spec:
               {{- if .Values.persistence.subPath }}
               subPath: {{ .Values.persistence.subPath }}
               {{- end }}
-          volumes:
-            - name: {{ .Values.persistence.name }}
-              {{- if .Values.persistence.enable }}
-              persistentVolumeClaim:
-                claimName: {{ default (include "softhsm.fullname" .) .Values.persistence.existingClaim }}
-              {{- else }}
-              emptyDir: {}
-              {{- end }}
           livenessProbe:
             tcpSocket:
               port: softhsm
@@ -63,6 +55,14 @@ spec:
             periodSeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+        volumes:
+          - name: {{ .Values.persistence.name }}
+            {{- if .Values.persistence.enable }}
+            persistentVolumeClaim:
+              claimName: {{ default (include "softhsm.fullname" .) .Values.persistence.existingClaim }}
+            {{- else }}
+            emptyDir: {}
+            {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
