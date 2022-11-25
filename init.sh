@@ -12,6 +12,8 @@ then
   openssl genrsa -out /var/lib/softhsm/key.pem 4096
 fi
 
+mkdir /var/lib/softhsm/tokens
+
 if ! [[ -f /var/lib/softhsm/slot0.db ]]
 then
   softhsm2-util --init-token --slot 0 --label key --pin $pin --so-pin $sopin
