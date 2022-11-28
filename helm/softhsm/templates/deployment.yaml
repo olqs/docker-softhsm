@@ -57,7 +57,7 @@ spec:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
         - name: {{ .Values.persistence.name }}
-          {{- if .Values.persistence.enable }}
+          {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
             claimName: {{ default (include "softhsm.fullname" .) .Values.persistence.existingClaim }}
           {{- else }}
